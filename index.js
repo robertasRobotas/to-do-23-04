@@ -8,9 +8,9 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/getRandomNumbers", (req, res) => {
-  const array = [324, 634, 234, 6544, 23, 76, 234, 654];
+const array = [324, 634, 234, 6544, 23, 76, 234, 654];
 
+app.get("/getRandomNumbers", (req, res) => {
   return res.status(200).json({ randomNumbers: array });
 });
 

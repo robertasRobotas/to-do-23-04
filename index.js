@@ -1,6 +1,13 @@
 const express = require("express");
 const app = express();
 
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
+
 app.get("/getRandomNumbers", (req, res) => {
   const array = [324, 634, 234, 6544, 23, 76, 234, 654];
 
@@ -18,10 +25,3 @@ app.listen(8081, () => {
 
 // var cors = require("cors");
 // app.use(cors());
-
-// app.use((req, res,next)=>{
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
-//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-//   next();
-// });

@@ -13,6 +13,8 @@ const cars = [
 
 router.get("/getAllCars", carController.GET_ALL_CARS);
 
+router.get("/getMostExpenciveCar", carController.GET_MOST_EXPENCIVE_CAR);
+
 router.get("/getSortedCarsByPrice", carController.GET_SORTED_CARS_BY_PRICE);
 
 router.get("/getCar/:id", carController.GET_CAR_BY_ID);
@@ -23,14 +25,12 @@ router.get("/getTotalCarsNumber", (req, res) => {
   return res.status(200).json({ cars: cars.length });
 });
 
-router.post("/insertCar", (req, res) => {
-  if (req.body.model && req.body.color) {
-    cars.push(req.body);
-    return res.status(200).json({ message: "car was inserted" });
-  } else {
-    return res.status(400).json({ message: "You have provided bad data" });
-  }
-});
+router.get(
+  "/getAllCarsByMaxPrice/:maxPrice",
+  carController.GET_ALL_CARS_BY_MAX_PRICE
+);
+
+router.post("/insertCar", carController.INSERT_CAR);
 
 router.delete("/removeLastCar", (req, res) => {
   cars.pop();
